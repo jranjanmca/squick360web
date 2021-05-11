@@ -1,0 +1,14 @@
+<!--https://stackblitz.com/edit/angular-sx79hu?embed=1&file=app/multiselect-autocomplete-example.html-->
+<mat-form-field>
+<input [type]="inputType" [placeholder]="searchBoxPlaceHolder" matInput [matAutocomplete]="autoSearchedObjs" [formControl]="qryVal">
+<mat-autocomplete #autoSearchedObjs="matAutocomplete">
+<mat-option *ngFor="let searchedObj of searchedObjs">
+<label> 
+    <input type='checkbox' [checked]="searchedObj.chckd" (click)="$event.stopPropagation()"/> 
+    <span> {{searchedObj[projs[0]]}}</span> 
+</label>
+</mat-option>
+</mat-autocomplete>
+</mat-form-field>
+<input type="button" class="search" *ngIf='enblSearchBtn'/>
+<div style="clear:both;">  <input type="button" class="addToLst" /> </div>

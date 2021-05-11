@@ -1,0 +1,150 @@
+<!--begin::Signup-->
+<div class="login-form login-signup">
+  <!--begin::Form-->
+  <form class="form" [formGroup]="registrationForm">
+    <!--begin::Title-->
+    <div class="pb-13 pt-lg-0 pt-5">
+      <h3 class="font-weight-bolder text-dark font-size-h4 font-size-h1-lg">
+        Sign Up
+      </h3>
+      <p class="text-muted font-weight-bold font-size-h4">
+        Enter your details to create your account
+      </p>
+    </div>
+
+    <ng-container *ngIf="hasError">
+      <div class="mb-10 alert alert-custom alert-light-danger alert-dismissible">
+        <div class="alert-text">The registration details are incorrect</div>
+      </div>
+    </ng-container>
+
+    <ng-container formGroupName="emp">
+        
+    <div class="form-group">
+      <label class="font-size-h6 font-weight-bolder text-dark">Full Name</label>
+      <input
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        type="text"
+        name="name"
+        formControlName="name"
+        placeholder="Fullname"
+        autocomplete="off"
+        [ngClass]="{
+          'is-invalid': registrationForm.get('emp').get('name').invalid
+        }"
+      /> 
+    </div>
+    <!--end::Form group-->
+
+    <!--begin::Form group-->
+    <div class="form-group">
+      <label class="font-size-h6 font-weight-bolder text-dark">Official Mail Id</label>
+      <input
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        type="email"
+        placeholder="Email"
+        name="officialEmailId"
+        formControlName="officialEmailId"
+        autocomplete="off"
+        [ngClass]="{ 'is-invalid': registrationForm.get('emp').get('officialEmailId').invalid }"
+      /> 
+    </div>
+    
+<!--    <div class="form-group">
+      <label class="font-size-h6 font-weight-bolder text-dark">Date of Birth</label>
+      <input
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        type="date"
+        placeholder="Date of Birth"
+        name="dob"
+        formControlName="dob"
+        autocomplete="off"
+        [ngClass]="{ 'is-invalid': registrationForm.get('emp').get('dob').invalid }"
+      /> 
+    </div>-->
+    
+<!--    <div class="form-group">
+      <label class="font-size-h6 font-weight-bolder text-dark">Designation</label>
+      <input
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        type="text"
+        placeholder="Date of Birth"
+        name="designation"
+        formControlName="designation"
+        autocomplete="off"
+        [ngClass]="{ 'is-invalid': registrationForm.get('emp').get('designation').invalid }"
+      /> 
+    </div>-->
+    <div class="form-group">
+      <label class="font-size-h6 font-weight-bolder text-dark">Password</label>
+      <input
+        class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+        type="password"
+        placeholder="password"
+        name="pwd"
+        formControlName="pwd"
+        autocomplete="off"
+        [ngClass]="{ 'is-invalid': registrationForm.get('emp').get('pwd').invalid }"
+      /> 
+    </div>
+    <div class="form-group">
+      <label class="checkbox mb-0">
+          Is Root &nbsp;  
+        <input type="checkbox" formControlName="isRoot" name="isRoot" />
+        <span></span>
+      </label>
+    </div>
+    </ng-container>
+    
+    <ng-container formGroupName="org">
+        <div class="form-group">
+            <label class="font-size-h6 font-weight-bolder text-dark">Organisation Name</label>
+            <input
+              class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+              type="text"
+              placeholder="Organisation Name"
+              name="orgTitle"
+              formControlName="orgTitle"
+              autocomplete="off"
+              [ngClass]="{ 'is-invalid': registrationForm.get('org').get('orgTitle').invalid }"
+            /> 
+        </div>
+        <div class="form-group">
+            <label class="font-size-h6 font-weight-bolder text-dark">Website</label>
+            <input
+              class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6"
+              type="text"
+              placeholder="Website"
+              name="website"
+              formControlName="website"
+              autocomplete="off"
+              [ngClass]="{ 'is-invalid': registrationForm.get('org').get('website').invalid }"
+            /> 
+        </div>
+    </ng-container>    
+
+    <div class="form-group d-flex flex-wrap pb-lg-0 pb-3">
+      <button  class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-4" (click)="submit()"> Submit</button>
+    </div>
+    <!--end::Form group-->
+  </form>
+  <!--end::Form-->
+</div>
+<!--end::Signup-->
+
+<ng-template
+  #formError
+  let-control="control"
+  let-message="message"
+  let-validation="validation"
+>
+  <ng-container
+    *ngIf="control.hasError(validation) && (control.dirty || control.touched)"
+  >
+    <div class="fv-plugins-message-container">
+      <div class="fv-help-block">
+        {{ message }}
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
